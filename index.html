@@ -861,14 +861,14 @@ let isShuffled = false;
 let originalOrder = []; // stores original indices
 let hideAnswers = false; // '풀이 숨기기' — 데이터 보존, 표시만 숨김
 
-const LS_ANSWERS = 'endo_v2_answers';
-const LS_FILTER  = 'endo_v2_filter';
-const LS_SCRAP   = 'endo_v2_scrap';
-const LS_EXPL    = 'endo_v2_expl';
-const LS_EXPLIMG = 'endo_v2_explimg';
-const LS_EXPLHIST= 'endo_v2_explhist';
-const LS_HIDE    = 'endo_v2_hide';
-const LS_SHARED  = 'endo_v2_shared';   // 공유데이터(해설·메모1·메모2) 오프라인 캐시(이미지 제외)
+const LS_ANSWERS = 'gsb_v1_answers';
+const LS_FILTER  = 'gsb_v1_filter';
+const LS_SCRAP   = 'gsb_v1_scrap';
+const LS_EXPL    = 'gsb_v1_expl';
+const LS_EXPLIMG = 'gsb_v1_explimg';
+const LS_EXPLHIST= 'gsb_v1_explhist';
+const LS_HIDE    = 'gsb_v1_hide';
+const LS_SHARED  = 'gsb_v1_shared';   // 공유데이터(해설·메모1·메모2) 오프라인 캐시(이미지 제외)
 
 // ── Supabase (공유 해설/메모) ─────────────────────────
 const SB_URL = 'https://gmdlzrgobwtzycnhcsug.supabase.co';
@@ -933,7 +933,7 @@ try { hideAnswers = localStorage.getItem(LS_HIDE)==='1'; } catch(e){}
 try { const r=localStorage.getItem(LS_SHARED); if(r) shared=JSON.parse(r); } catch(e){}
 try {
   const rf=localStorage.getItem(LS_FILTER);
-  if(rf){ const f=JSON.parse(rf); filterYear=f.year||'all'; filterLec=f.lec||'all'; filterTerm=f.term||'all'; filterScrapOnly=!!f.scrap; }
+  if(rf){ const f=JSON.parse(rf); filterYear=f.year||'all'; filterLec=f.lec||'all'; filterTerm='all';  // 단일 과목 — 저장값 무시 filterScrapOnly=!!f.scrap; }
 } catch(e){}
 
 // ═══════════════════════════════════════════════════
@@ -1170,7 +1170,7 @@ function lecRoster(){
   return out;
 }
 // 강의 → 과목(1차/2차) 편성: ~34강=1차, 40강~=2차, CBL/정리/기타=양쪽(0)
-function lecTerm(key){ const n=parseInt(key,10); if(!isNaN(n)){ if(n<=34) return 1; if(n>=40) return 2; } return 0; }
+function lecTerm(key){ return 0; }  // 생성발2=단일 과목
 // 강의코드 표시명. 'NF'=오분류 교정용 특수 강의(어느 강의에도 없는 문항). 빈값=기타.
 function lecDisp(code){ return code==='NF' ? '99. Not found' : (code ? code+'강' : '기타'); }
 // 강의별 교수명·수업일 — schedule 봇 정본(2026 대사와 내분비 공식 시간표 260416.pdf 파싱 + Canvas 대조). 61/63 확정(CBL/정리 제외).

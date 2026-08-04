@@ -933,7 +933,7 @@ try { hideAnswers = localStorage.getItem(LS_HIDE)==='1'; } catch(e){}
 try { const r=localStorage.getItem(LS_SHARED); if(r) shared=JSON.parse(r); } catch(e){}
 try {
   const rf=localStorage.getItem(LS_FILTER);
-  if(rf){ const f=JSON.parse(rf); filterYear=f.year||'all'; filterLec=f.lec||'all'; filterTerm='all';  // 단일 과목 — 저장값 무시 filterScrapOnly=!!f.scrap; }
+  if(rf){ const f=JSON.parse(rf); filterYear=f.year||'all'; filterLec=f.lec||'all'; filterTerm='all'; /* 단일 과목 — 저장값 무시 */ filterScrapOnly=!!f.scrap; }
 } catch(e){}
 
 // ═══════════════════════════════════════════════════

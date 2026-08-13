@@ -701,6 +701,9 @@ header h1{font-size:1rem;font-weight:700;letter-spacing:-0.02em;line-height:1.2;
 .pa-link:hover{border-color:var(--accent)}
 .pa-none{color:var(--text-muted);font-size:0.75rem}
 .opt-img{display:block;max-width:220px;max-height:170px;margin:6px 0 2px;border-radius:6px;cursor:zoom-in}
+.subj-switch{font-size:0.82rem;padding:5px 9px;border-radius:6px;border:1px solid rgba(255,255,255,0.35);background:rgba(255,255,255,0.12);color:#fff;font-weight:600;cursor:pointer;max-width:190px}
+.subj-switch option{color:#222;background:#fff}
+@media(max-width:640px){.subj-switch{max-width:130px;font-size:0.75rem}}
 </style>
 </head>
 <body>
@@ -711,6 +714,11 @@ header h1{font-size:1rem;font-weight:700;letter-spacing:-0.02em;line-height:1.2;
     <div class="header-sub">2020·2021·2022·2023·2025 &nbsp;|&nbsp; 총 453문항 &nbsp;·&nbsp; 41개 강의</div>
   </div>
   <div class="header-right">
+    <select id="subject-switch" class="subj-switch" aria-label="과목 전환" title="다른 과목 족보로 이동" onchange="if(this.value)location.href=this.value">
+      <option value="/endo-jokbo/">대사와 내분비 (308)</option>
+      <option value="/gsb-jokbo/" selected>생식성장발달2 (401)</option>
+      <option value="/gsb-jokbo/kidney/">신장요로 (404)</option>
+    </select>
     <select id="term-select" class="hdr-select" onchange="setTerm(this.value)" style="display:none" aria-label="과목"><option value="all">전체</option></select>
     <button id="user-switch-btn" class="hdr-user-btn" onclick="showIdentityPrompt()" title="사용자 변경" aria-label="사용자 변경">👤 <span id="hdr-user">선택</span> ▾</button>
     <button id="mobile-sidebar-btn" onclick="toggleSidebar()">☰</button>
